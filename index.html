@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Seller Pro Chat a</title>
+    <title>Seller Pro Chat b</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
@@ -798,28 +798,23 @@
 
 		function togglePanel(panelId, parentId, e) {
 			if (e && e.target.tagName === 'INPUT') return;
-			const panel = document.getElementById(panelId);
-			const parentDiv = document.getElementById(parentId);
 		
-			// Tutup semua panel kategori lain
-			document.querySelectorAll('.panel.open').forEach(function(openPanel) {
-				if (openPanel.id !== panelId) {
-					openPanel.classList.remove('open');
-					const openParent = openPanel.parentNode;
-					if (openParent.classList.contains('category-item')) {
-						openParent.classList.remove('active-parent');
-					}
-				}
+			// Tutup SEMUA panel dan category-item lain
+			document.querySelectorAll('.panel.open').forEach(function(panel) {
+				panel.classList.remove('open');
+			});
+			document.querySelectorAll('.category-item.active-parent').forEach(function(catItem) {
+				catItem.classList.remove('active-parent');
 			});
 		
-			// Toggle panel yang diklik
-			if (panel.classList.contains('open')) {
-				panel.classList.remove('open');
-				parentDiv.classList.remove('active-parent');
-			} else {
+			// Toggle untuk kategori yang DIKLIK
+			const panel = document.getElementById(panelId);
+			const parentDiv = document.getElementById(parentId);
+			if (!panel.classList.contains('open')) {
 				panel.classList.add('open');
 				parentDiv.classList.add('active-parent');
 			}
+			// Jika panel sudah terbuka, cukup biarkan tertutup (tanpa re-open)
 		}
 
         function checkContent(text) {
