@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
+
     <style>
+        /* --- 1. SETTING TEMA & VARIABEL --- */
         :root {
             --primary: #FE2C55;
             --primary-hover: #e0244a;
@@ -27,6 +29,8 @@
             --radius: 12px;
             --transition: all 0.3s ease;
         }
+
+        /* Dark Mode Variables */
         [data-theme="dark"] {
             --bg-body: #0f172a;
             --bg-card: #1e293b;
@@ -39,10 +43,13 @@
             --warning-bg: #450a0a;
             --header-bg: #1e293b;
         }
+
+        /* Reset dan base styles */
         * {
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-body);
@@ -56,6 +63,8 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
+
+        /* --- 2. HEADER & TOP BAR --- */
         .sticky-header {
             background-color: var(--header-bg);
             padding: 12px 15px;
@@ -71,66 +80,476 @@
             gap: 10px;
             backdrop-filter: blur(8px);
         }
-        .header-left { display: flex; align-items: center; gap: 12px; }
-        h2 { margin: 0; color: var(--primary); font-size: 18px; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(135deg, var(--primary), #ff6b9c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .header-actions { display: flex; align-items: center; gap: 8px; }
-        .btn-top { padding: 8px 12px; font-size: 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-main); cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 5px; transition: var(--transition); box-shadow: var(--shadow); touch-action: manipulation; }
-        .btn-top:hover, .btn-top:active { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-        .theme-switch { position: relative; display: inline-block; width: 40px; height: 22px; }
-        .theme-switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: var(--transition); border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 2px; bottom: 2px; background-color: white; transition: var(--transition); border-radius: 50%; }
-        input:checked + .slider { background-color: var(--primary); }
-        input:checked + .slider:before { transform: translateX(18px); }
-        .info-bar { background: linear-gradient(135deg, var(--primary), #ff6b9c); color: white; padding: 10px 15px; text-align: center; font-size: 13px; font-weight: 500; box-shadow: var(--shadow); }
-        #app-container { max-width: 1200px; margin: 15px auto; padding: 0 10px; display: flex; flex-direction: column; gap: 15px; }
-        @media (min-width: 768px) {
-            #app-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 0 15px; }
+        
+        .header-left { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
         }
-        @media (min-width: 1024px) { #app-container { gap: 25px; } }
-        .category-item { background: var(--bg-card); border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--border); overflow: hidden; margin-bottom: 0; transition: var(--transition); min-height: 60px; display: flex; flex-direction: column; }
-        .category-item:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
-        .category-header { padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; background: var(--bg-card); transition: var(--transition); flex-shrink: 0; -webkit-user-select: none; user-select: none; }
-        .category-header:active { background: var(--bg-panel); }
-        @media (min-width: 768px) { .category-header:hover { background: var(--bg-panel); } }
-        .header-content { flex-grow: 1; display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 15px; color: var(--text-main); padding: 5px 0; }
-        .header-content input { padding: 6px 10px; font-size: 15px; font-weight: 600; border: 1px solid var(--primary); border-radius: 6px; background-color: var(--bg-body); color: var(--text-main); flex-grow: 1; margin-left: 10px; box-sizing: border-box; outline: none; transition: var(--transition); -webkit-appearance: none; }
-        .header-content input:focus { box-shadow: 0 0 0 2px rgba(254, 44, 85, 0.2); }
-        .panel { max-height: 0; overflow: hidden; padding: 0 15px; background-color: var(--bg-panel); border-top: 1px solid transparent; transition: max-height 0.3s ease, padding 0.3s ease; flex-grow: 1; }
-        .panel.open { max-height: 1000px; padding: 12px 15px; border-top: 1px solid var(--border); }
-        @media (min-width: 768px) { .panel { padding: 0 20px; } .panel.open { padding: 15px 20px; } }
-        .script-card { background: var(--bg-card); padding: 12px; margin: 8px 0; border-radius: 8px; border: 1px solid var(--border); position: relative; border-left: 4px solid var(--color-cat); transition: var(--transition); box-shadow: var(--shadow); }
-        .script-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .card-title { font-size: 12px; font-weight: 700; color: var(--primary); letter-spacing: -0.2px; }
-        .card-body { font-size: 14px; line-height: 1.6; padding: 10px; background: var(--bg-body); border-radius: 6px; cursor: pointer; transition: var(--transition); border: 1px solid transparent; -webkit-user-select: none; user-select: none; touch-action: manipulation; }
-        .card-body:active { background: var(--bg-panel); border-color: var(--border); }
-        @media (min-width: 768px) { .card-body:hover { background: var(--bg-panel); border-color: var(--border); } }
-        .tap-hint { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 5px; font-style: italic; }
-        .form-input { width: 100%; padding: 10px; font-size: 14px; margin-bottom: 10px; border: 1px solid var(--border); background: var(--bg-body); color: var(--text-main); border-radius: 8px; box-sizing: border-box; transition: var(--transition); -webkit-appearance: none; }
-        .form-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 2px rgba(254, 44, 85, 0.2); }
-        .btn { padding: 8px 12px; font-size: 12px; border-radius: 8px; gap: 5px; border: none; cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; justify-content: center; font-weight: 600; touch-action: manipulation; }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover, .btn-primary:active { background: var(--primary-hover); transform: translateY(-1px); }
-        .btn-danger { background: var(--danger); color: white; }
-        .btn-danger:hover, .btn-danger:active { background: #dc2626; transform: translateY(-1px); }
-        .btn-group { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-        .btn-icon { padding: 6px; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
-        .fab { position: fixed; bottom: 20px; right: 20px; width: 56px; height: 56px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; box-shadow: var(--shadow-lg); cursor: pointer; transition: var(--transition); z-index: 100; touch-action: manipulation; }
-        .fab:hover, .fab:active { transform: scale(1.1); box-shadow: 0 8px 25px rgba(254, 44, 85, 0.4); }
-        #toast { visibility: hidden; min-width: 250px; background-color: var(--success); color: white; text-align: center; border-radius: 8px; padding: 12px; position: fixed; z-index: 1000; left: 50%; bottom: 30px; transform: translateX(-50%); font-weight: 500; box-shadow: var(--shadow-lg); transition: visibility 0s, opacity 0.3s ease; opacity: 0; }
-        #toast.show { visibility: visible; opacity: 1; }
+        
+        h2 { 
+            margin: 0; 
+            color: var(--primary); 
+            font-size: 18px; 
+            font-weight: 800; 
+            letter-spacing: -0.5px; 
+            background: linear-gradient(135deg, var(--primary), #ff6b9c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .header-actions { 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+        }
+        
+        .btn-top { 
+            padding: 8px 12px; 
+            font-size: 12px; 
+            border-radius: 8px; 
+            border: 1px solid var(--border); 
+            background: var(--bg-card); 
+            color: var(--text-main); 
+            cursor: pointer; 
+            font-weight: 600; 
+            display: flex; 
+            align-items: center; 
+            gap: 5px; 
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            touch-action: manipulation;
+        }
+        
+        .btn-top:hover, .btn-top:active {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Theme Switch */
+        .theme-switch { 
+            position: relative; 
+            display: inline-block; 
+            width: 40px; 
+            height: 22px; 
+        } 
+        
+        .theme-switch input { 
+            opacity: 0; 
+            width: 0; 
+            height: 0; 
+        }
+        
+        .slider { 
+            position: absolute; 
+            cursor: pointer; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background-color: #ccc; 
+            transition: var(--transition); 
+            border-radius: 34px; 
+        }
+        
+        .slider:before { 
+            position: absolute; 
+            content: ""; 
+            height: 18px; 
+            width: 18px; 
+            left: 2px; 
+            bottom: 2px; 
+            background-color: white; 
+            transition: var(--transition); 
+            border-radius: 50%; 
+        }
+        
+        input:checked + .slider { 
+            background-color: var(--primary); 
+        }
+        
+        input:checked + .slider:before { 
+            transform: translateX(18px); 
+        }
+
+        /* Info Bar */
+        .info-bar {
+            background: linear-gradient(135deg, var(--primary), #ff6b9c);
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: var(--shadow);
+        }
+
+        /* --- 4. LAYOUT UTAMA (Responsive Grid) --- */
+        #app-container {
+            max-width: 1200px;
+            margin: 15px auto;
+            padding: 0 10px;
+            display: flex; 
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        /* Tablet dan Desktop */
+        @media (min-width: 768px) {
+            #app-container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                padding: 0 15px;
+            }
+        }
+
+        /* Desktop besar */
+        @media (min-width: 1024px) {
+            #app-container {
+                gap: 25px;
+            }
+        }
+
+        /* --- 5. MENU & CARD STYLES --- */
+        .category-item {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin-bottom: 0; 
+            transition: var(--transition);
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .category-item:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        
+        .category-header {
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            background: var(--bg-card);
+            transition: var(--transition);
+            flex-shrink: 0;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .category-header:active {
+            background: var(--bg-panel);
+        }
+
+        @media (min-width: 768px) {
+            .category-header:hover {
+                background: var(--bg-panel);
+            }
+        }
+
+        .header-content { 
+            flex-grow: 1; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            font-weight: 600; 
+            font-size: 15px; 
+            color: var(--text-main); 
+            padding: 5px 0; 
+        }
+
+        /* Styling for the dynamically added input */
+        .header-content input {
+            padding: 6px 10px;
+            font-size: 15px;
+            font-weight: 600;
+            border: 1px solid var(--primary);
+            border-radius: 6px;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            flex-grow: 1;
+            margin-left: 10px;
+            box-sizing: border-box;
+            outline: none;
+            transition: var(--transition);
+            -webkit-appearance: none;
+        }
+
+        .header-content input:focus {
+            box-shadow: 0 0 0 2px rgba(254, 44, 85, 0.2);
+        }
+
+        /* Panel Isi: Area Submenu */
+        .panel { 
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 15px;
+            background-color: var(--bg-panel); 
+            border-top: 1px solid transparent; 
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            flex-grow: 1;
+        }
+        
+        .panel.open { 
+            max-height: 1000px;
+            padding: 12px 15px;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (min-width: 768px) {
+            .panel {
+                padding: 0 20px;
+            }
+            
+            .panel.open {
+                padding: 15px 20px;
+            }
+        }
+
+        /* Script Card (Compact) */
+        .script-card {
+            background: var(--bg-card);
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            position: relative;
+            border-left: 4px solid var(--color-cat);
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+        
+        .script-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .card-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 8px; 
+        }
+        
+        .card-title { 
+            font-size: 12px; 
+            font-weight: 700; 
+            color: var(--primary); 
+            letter-spacing: -0.2px;
+        }
+
+        .card-body {
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 10px;
+            background: var(--bg-body);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: manipulation;
+        }
+        
+        .card-body:active {
+            background: var(--bg-panel);
+            border-color: var(--border);
+        }
+
+        @media (min-width: 768px) {
+            .card-body:hover {
+                background: var(--bg-panel);
+                border-color: var(--border);
+            }
+        }
+
+        .tap-hint {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .form-input { 
+            width: 100%; 
+            padding: 10px; 
+            font-size: 14px; 
+            margin-bottom: 10px;
+            border: 1px solid var(--border); 
+            background: var(--bg-body); 
+            color: var(--text-main); 
+            border-radius: 8px; 
+            box-sizing: border-box;
+            transition: var(--transition);
+            -webkit-appearance: none;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(254, 44, 85, 0.2);
+        }
+        
+        .btn { 
+            padding: 8px 12px; 
+            font-size: 12px; 
+            border-radius: 8px; 
+            gap: 5px; 
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            touch-action: manipulation;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover, .btn-primary:active {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+        
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .btn-danger:hover, .btn-danger:active {
+            background: #dc2626;
+            transform: translateY(-1px);
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-icon {
+            padding: 6px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* FAB Button */
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 100;
+            touch-action: manipulation;
+        }
+        
+        .fab:hover, .fab:active {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(254, 44, 85, 0.4);
+        }
+
+        /* Toast Notification */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: var(--success);
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            padding: 12px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-weight: 500;
+            box-shadow: var(--shadow-lg);
+            transition: visibility 0s, opacity 0.3s ease;
+            opacity: 0;
+        }
+        
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Utility Classes */
         .hidden { display: none !important; }
-        .risk-alert { background: var(--warning-bg); border: 1px solid var(--danger); color: var(--danger); padding: 10px; border-radius: 6px; margin-bottom: 10px; font-size: 13px; }
-        .drag-handle { cursor: move; color: var(--text-muted); transition: var(--transition); touch-action: none; }
-        .drag-handle:hover { color: var(--primary); }
-        .empty-state { text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 16px; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .category-item, .script-card { animation: fadeIn 0.3s ease; }
-        @supports (-webkit-touch-callout: none) { .category-header, .card-body, .btn, .fab { cursor: pointer; } }
+        
+        .risk-alert {
+            background: var(--warning-bg);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+        
+        .drag-handle {
+            cursor: move;
+            color: var(--text-muted);
+            transition: var(--transition);
+            touch-action: none;
+        }
+        
+        .drag-handle:hover {
+            color: var(--primary);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .category-item, .script-card {
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Perbaikan untuk iOS */
+        @supports (-webkit-touch-callout: none) {
+            .category-header, .card-body, .btn, .fab {
+                cursor: pointer;
+            }
+        }
     </style>
 </head>
 <body>
+
     <div class="sticky-header">
         <div class="header-left">
             <h2>Seller Pro V15</h2>
@@ -141,6 +560,7 @@
                 </label>
             </div>
         </div>
+
         <div class="header-actions">
             <button class="btn-top btn-reset" onclick="resetToDefault()">
                 <i class="fas fa-rotate-left"></i> Reset
@@ -150,67 +570,76 @@
             </button>
         </div>
     </div>
+
     <div class="info-bar">
         <i class="fas fa-shield-alt"></i> <b>INFO PENTING:</b> Hindari kata sensitif di balasan chat.
     </div>
+
     <div id="app-container"></div>
+
     <div class="fab" onclick="addNewCategory()">
         <i class="fas fa-plus"></i>
     </div>
+
     <div id="toast"><i class="fas fa-check-circle"></i> Teks berhasil disalin!</div>
+
     <script>
         // --- 1. DATA MASTER ---
         const defaultData = [
             { id: 'cat_0', title: 'Cek Stok (Ready/Habis)', icon: 'fa-cubes', color: '#3b82f6', 
                 items: [
-                    { id: 'm01', title: 'Barang Ready Stock', text: 'Hai Kak! Produk ini READY STOCK dan siap kirim ya. Selama varian masih bisa diklik, berarti barang tersedia. Silakan langsung di-chat jika ada pertanyaan lain 😊' },
-                    { id: 'm02', title: 'Stok Habis/Kosong', text: 'Mohon maaf Kak, untuk varian tersebut saat ini sedang habis (Sold Out). 🙏 Kami akan restock secepatnya. Boleh follow toko kami untuk info update-nya ya.' },
+                    { id: 'm01', title: 'Barang Ready Stock', text: 'Hai Kak! Produk ini READY STOCK dan siap kirim ya. Selama varian masih bisa diklik, berarti barang tersedia. Silakan langsung di-checkout sebelum kehabisan! 🔥' },
+                    { id: 'm02', title: 'Stok Habis/Kosong', text: 'Mohon maaf Kak, untuk varian tersebut saat ini sedang habis (Sold Out). 🙏 Kami akan restock secepatnya. Boleh follow toko kami untuk update terbarunya ya. Terima kasih!' },
                     { id: 'm03', title: 'Stok Menipis', text: 'Hai Kak, stoknya tinggal sedikit lagi nih. Siapa cepat dia dapat ya Kak. Yuk segera diamankan pesananannya sekarang! 😊' }
                 ]},
             { id: 'cat_1', title: 'Komplain & Review Buruk', icon: 'fa-triangle-exclamation', color: '#ef4444', 
                 items: [
-                    { id: 'm11', title: 'Minta Maaf & Solusi (Sopan)', text: 'Mohon maaf atas ketidaknyamanannya, Kak. Kepuasan Kakak adalah prioritas kami. Boleh tolong infokan detail kendalanya via chat? Kami siap membantu solusinya.' },
-                    { id: 'm12', title: 'Respons Bintang 1 Tanpa Alasan', text: 'Halo Kak, mohon maaf jika produk kami tidak memenuhi ekspektasi. Kami selalu berusaha memberikan yang terbaik. Jika ada saran, silakan DM ya.' }
+                    { id: 'm11', title: 'Minta Maaf & Solusi (Sopan)', text: 'Mohon maaf atas ketidaknyamanannya, Kak. Kepuasan Kakak adalah prioritas kami. Boleh tolong infokan detail kendalanya via chat ini agar kami bisa bantu berikan solusi terbaik? Terima kasih.' },
+                    { id: 'm12', title: 'Respons Bintang 1 Tanpa Alasan', text: 'Halo Kak, mohon maaf jika produk kami tidak memenuhi ekspektasi. Kami selalu berusaha memberikan yang terbaik. Jika ada cacat produk, mohon chat kami untuk proses klaim garansi/retur ya Kak. 🙏' }
                 ]},
             { id: 'cat_2', title: 'Balasan Ulasan Bintang 5', icon: 'fa-star', color: '#f59e0b', 
                 items: [
-                    { id: 'm21', title: 'Terima Kasih Standard', text: 'Terima kasih banyak ulasan bintang 5-nya Kak! 😍 Senang sekali Kakak suka dengan produknya. Semoga awet dan ditunggu orderan selanjutnya!' },
+                    { id: 'm21', title: 'Terima Kasih Standard', text: 'Terima kasih banyak ulasan bintang 5-nya Kak! 😍 Senang sekali Kakak suka dengan produknya. Semoga awet dan ditunggu orderan selanjutnya ya!' },
                     { id: 'm22', title: 'Doa Rezeki (Ramah)', text: 'Alhamdulillah, terima kasih Kak sudah belanja di toko kami. Semoga rezekinya lancar terus ya Kak. Ditunggu next ordernya! ❤️' }
                 ]},
             { id: 'cat_3', title: 'Pengiriman & Logistik', icon: 'fa-truck-fast', color: '#10b981', 
                 items: [
-                    { id: 'm31', title: 'Kapan Dikirim?', text: 'Pesanan yang masuk sebelum jam 15.00 akan dikirim hari ini ya Kak. Resi update otomatis malam hari. Mohon ditunggu update statusnya di aplikasi.' },
-                    { id: 'm32', title: 'Paket Belum Jalan (Stuck)', text: 'Halo Kak, fisik paket sudah kami serahkan ke pihak ekspedisi ya. Saat ini status di sistem mungkin delay update dari pihak kurir. Mohon ditunggu.' },
-                    { id: 'm33', title: 'Paket Hilang/Lama Sampai', text: 'Mohon maaf atas keterlambatannya Kak. Kami sudah bantu follow-up ke pihak ekspedisi terkait paket Kakak. Jika dalam 2 hari tidak update, silakan chat kami kembali.' }
+                    { id: 'm31', title: 'Kapan Dikirim?', text: 'Pesanan yang masuk sebelum jam 15.00 akan dikirim hari ini ya Kak. Resi update otomatis malam hari. Mohon ditunggu update statusnya di aplikasi. Terima kasih! 🚚' },
+                    { id: 'm32', title: 'Paket Belum Jalan (Stuck)', text: 'Halo Kak, fisik paket sudah kami serahkan ke pihak ekspedisi ya. Saat ini status di sistem mungkin delay update dari pihak kurirnya. Mohon kesediaannya menunggu 1x24 jam kedepan ya Kak. 🙏' },
+                    { id: 'm33', title: 'Paket Hilang/Lama Sampai', text: 'Mohon maaf atas keterlambatannya Kak. Kami sudah bantu follow-up ke pihak ekspedisi terkait paket Kakak. Jika dalam 2 hari tidak ada pergerakan, silakan ajukan pengembalian dana (paket hilang) via sistem ya Kak.' }
                 ]},
             { id: 'cat_4', title: 'Paket Tidak Sesuai/Rusak', icon: 'fa-box-open', color: '#6366f1', 
                 items: [
-                    { id: 'm41', title: 'Minta Bukti Video', text: 'Mohon maaf atas kendalanya Kak. 🙏 Bisa tolong lampirkan video unboxing (buka paket) agar bisa kami bantu pengecekan dengan tim packing?' },
-                    { id: 'm42', title: 'Barang Cacat/Rusak', text: 'Waduh, mohon maaf sekali barang sampai dalam kondisi rusak. Jangan selesaikan pesanan dulu ya Kak. Silakan ajukan pengembalian barang via aplikasi.' }
+                    { id: 'm41', title: 'Minta Bukti Video', text: 'Mohon maaf atas kendalanya Kak. 🙏 Bisa tolong lampirkan video unboxing (buka paket) agar bisa kami bantu pengecekan dengan tim packing? Kami akan bertanggung jawab penuh jika ada kesalahan.' },
+                    { id: 'm42', title: 'Barang Cacat/Rusak', text: 'Waduh, mohon maaf sekali barang sampai dalam kondisi rusak. Jangan selesaikan pesanan dulu ya Kak. Silakan ajukan pengembalian barang/dana via aplikasi, nanti kami approve segera.' }
                 ]},
             { id: 'cat_5', title: 'Masalah Return (Pengembalian)', icon: 'fa-rotate-left', color: '#a855f7', 
                 items: [
-                    { id: 'm51', title: 'Cara Mengajukan Return', text: 'Halo Kak, untuk proses retur yang aman, silakan klik tombol \'Ajukan Pengembalian\' pada rincian pesanan Kakak. Ikuti instruksinya, dan tim kami akan proses segera 🙏' },
-                    { id: 'm52', title: 'Return Ditolak (Salah Alasan)', text: 'Halo Kak, pengajuan returnya kami tolak dulu karena alasan yang dipilih kurang tepat. Silakan ajukan ulang dengan memilih alasan yang sesuai ya Kak.' }
+                    { id: 'm51', title: 'Cara Mengajukan Return', text: 'Halo Kak, untuk proses retur yang aman, silakan klik tombol \'Ajukan Pengembalian\' pada rincian pesanan Kakak. Ikuti instruksi di aplikasi untuk mendapatkan resi pengembalian gratis ongkir.' },
+                    { id: 'm52', title: 'Return Ditolak (Salah Alasan)', text: 'Halo Kak, pengajuan returnya kami tolak dulu karena alasan yang dipilih kurang tepat. Silakan ajukan ulang dengan memilih alasan "Barang Berubah Pikiran" atau "Produk Tidak Berfungsi" ya Kak agar bisa kami proses.' }
                 ]},
             { id: 'cat_6', title: 'Barang Tertukar', icon: 'fa-arrow-right-arrow-left', color: '#ec4899', 
                 items: [
-                    { id: 'm61', title: 'Salah Kirim Varian', text: 'Mohon maaf Kak, sepertinya tim packing kami salah menempelkan resi/mengambil barang. 🙏 Kami akan kirimkan barang penggantinya. Silakan lampirkan foto barang yang diterima.' }
+                    { id: 'm61', title: 'Salah Kirim Varian', text: 'Mohon maaf Kak, sepertinya tim packing kami salah menempelkan resi/mengambil barang. 🙏 Kami akan kirimkan barang penggantinya. Silakan ajukan penukaran barang di sistem ya Kak.' }
                 ]},
             { id: 'cat_7', title: 'Produk Tidak Berfungsi (Trouble)', icon: 'fa-plug', color: '#f97316', 
                 items: [
-                    { id: 'm71', title: 'Panduan Pemakaian', text: 'Halo Kak, untuk produk ini apakah sudah dicoba (misal: dicharge dulu 2 jam)? Terkadang produk butuh daya awal. Jika tetap tidak bisa mohon infokan detail kendalanya.' }
+                    { id: 'm71', title: 'Panduan Pemakaian', text: 'Halo Kak, untuk produk ini apakah sudah dicoba [Isi Instruksi Singkat, misal: cas dulu 2 jam]? Terkadang produk butuh daya awal. Jika masih tidak menyala, kami siap ganti baru.' }
                 ]},
             { id: 'cat_8', title: 'Pertanyaan Umum (COD/Asli)', icon: 'fa-circle-question', color: '#06b6d4', 
                 items: [
-                    { id: 'm81', title: 'Apakah Bisa COD?', text: 'Bisa banget Kak! Toko kami support COD (Bayar di Tempat) ke seluruh Indonesia. Pastikan alamat lengkap dan nomor HP aktif ya saat checkout.' },
-                    { id: 'm82', title: 'Apakah Produk Original?', text: 'Kami jamin 100% Original Kak. Barang kami ambil langsung dari distributor resmi. Ada garansi uang kembali jika terbukti tidak asli.' },
-                    { id: 'm83', title: 'Minta Realpict', text: 'Foto yang dipajang di etalase sudah foto asli (Real Picture) dari tim kami ya Kak. Apa yang Kakak lihat, itu yang akan Kakak dapatkan.' }
+                    { id: 'm81', title: 'Apakah Bisa COD?', text: 'Bisa banget Kak! Toko kami support COD (Bayar di Tempat) ke seluruh Indonesia. Pastikan alamat lengkap dan nomor HP aktif ya saat checkout. Ditunggu! 😊' },
+                    { id: 'm82', title: 'Apakah Produk Original?', text: 'Kami jamin 100% Original Kak. Barang kami ambil langsung dari distributor resmi. Ada garansi uang kembali jika terbukti tidak ori. Silakan diorder dengan tenang. ✨' },
+                    { id: 'm83', title: 'Minta Realpict', text: 'Foto yang dipajang di etalase sudah foto asli (Real Picture) dari tim kami ya Kak. Apa yang Kakak lihat, itu yang akan Kakak dapatkan. 👌' }
                 ]}
         ];
+
+        // --- 2. LOGIKA UTAMA ---
         let appData = [];
         const STORAGE_KEY = 'SellerProV15_Data'; 
-        const BANNED_KEYWORDS = ["whatsapp", "wa ", "08", "no hp", "ig", "instagram", "shopee", "tokopedia", "lazada", "tf", "transfer", "bca", "mandiri", "diluar aplikasi"];
+        const BANNED_KEYWORDS = ["whatsapp", "wa ", "08", "no hp", "ig", "instagram", "shopee", "tokopedia", "lazada", "tf", "transfer", "bca", "mandiri", "diluar aplikasi", "putih instan", "permanen", "garansi uang kembali", "kw", "ori reject"];
+
+        // --- 3. INITIALIZATION & STORAGE ---
         function init() {
             // Dark Mode
             const savedTheme = localStorage.getItem('theme');
@@ -222,6 +651,7 @@
                 document.documentElement.setAttribute('data-theme', savedTheme);
                 if(savedTheme === 'dark') document.getElementById('checkbox').checked = true;
             }
+
             // Load Data
             const savedData = localStorage.getItem(STORAGE_KEY);
             if (savedData) {
@@ -231,7 +661,9 @@
             }
             render();
         }
+
         function saveData() { localStorage.setItem(STORAGE_KEY, JSON.stringify(appData)); }
+
         function resetToDefault() {
             const confirmReset = confirm("⚠️ PERINGATAN: Semua data script Anda akan dihapus dan dikembalikan ke pengaturan awal (pabrik).\n\nApakah Anda yakin?");
             if (confirmReset) {
@@ -241,6 +673,7 @@
                 alert("Data berhasil dikembalikan ke default.");
             }
         }
+
         function deleteAll() {
             const confirmDel = confirm("⚠️ PERINGATAN KERAS: Menu dan semua script akan dihapus TOTAL!\n\nAnda harus membuatnya lagi dari nol.\nApakah Anda yakin?");
             if (confirmDel) {
@@ -250,56 +683,24 @@
             }
         }
 
-        // ------ UPDATE LOGIKA PANEL AGAR HANYA 1 PER KOLOM SAJA ------
-        // "left" untuk kolom kiri, "right" untuk kanan, "one" untuk mobile/tablet (1 kolom)
-        let openPanels = { left: null, right: null, one: null };
-
-        function determineColumn(index) {
-            // >=768px 2 kolom grid: index genap -> kiri, ganjil -> kanan. <768px semua 'one'
-            if (window.innerWidth >= 768) return (index % 2 === 0) ? 'left' : 'right';
-            return 'one';
-        }
-
-        function togglePanel(panelId, parentId, e) {
-            if (e && e.target.tagName === 'INPUT') return;
-            const panel = document.getElementById(panelId);
-            const parentDiv = document.getElementById(parentId);
-            const column = parentDiv.dataset.column || 'one'; // "left"/"right"/"one"
-            if (panel.classList.contains('open')) {
-                panel.classList.remove('open');
-                parentDiv.classList.remove('active-parent');
-                openPanels[column] = null;
-                return;
-            }
-            // Tutup panel lain di kolom yang sama
-            if (openPanels[column] && openPanels[column] !== panel) {
-                openPanels[column].classList.remove('open');
-                const prevParent = openPanels[column].parentNode;
-                if (prevParent) prevParent.classList.remove('active-parent');
-            }
-            panel.classList.add('open');
-            parentDiv.classList.add('active-parent');
-            openPanels[column] = panel;
-        }
-
-        // --- RENDER ---
+        // --- 5. RENDER SYSTEM ---
         function render() {
-            // Reset panel tracker (perlu direfresh setiap render)
-            openPanels = { left: null, right: null, one: null };
             const container = document.getElementById('app-container');
             container.innerHTML = '';
+
             if (appData.length === 0) {
                 container.innerHTML = '<div class="empty-state">Belum ada menu tersimpan.<br>Klik tombol (+) di bawah untuk membuat baru.</div>';
                 return;
             }
+
             appData.forEach((cat, catIndex) => {
                 const catDiv = document.createElement('div');
                 catDiv.className = 'category-item';
                 catDiv.id = `cat-item-${cat.id}`;
                 catDiv.dataset.index = catIndex;
-                const col = determineColumn(catIndex);
-                catDiv.dataset.column = col;
                 catDiv.style.setProperty('--color-cat', cat.color || 'var(--color-cat-default)');
+
+                // Panel awalnya TERTUTUP (tidak ada class 'open')
                 catDiv.innerHTML = `
                     <div class="category-header">
                         <div class="drag-handle cat-handle"><i class="fas fa-grip-lines"></i></div>
@@ -313,13 +714,15 @@
                             <button class="btn-icon btn-top" onclick="deleteCat(${catIndex}, event)" style="color:var(--danger); border-color:var(--danger)"><i class="fas fa-trash-alt"></i></button>
                         </div>
                     </div>
-                    <div class="panel" id="panel-${cat.id}">
+                    
+                    <div class="panel" id="panel-${cat.id}"> <!-- Tidak ada class 'open' di sini -->
                         <div class="list-scripts" data-cat-index="${catIndex}"></div>
                         <button class="btn" style="width:100%; justify-content:center; margin-top:10px; border-style:dashed;" onclick="addNewItem(${catIndex})">
                             <i class="fas fa-plus"></i> Tambah Pesan
                         </button>
                     </div>
                 `;
+
                 const listContainer = catDiv.querySelector('.list-scripts');
                 cat.items.forEach((item, itemIndex) => {
                     const card = document.createElement('div');
@@ -329,14 +732,17 @@
                             <div class="card-title">${item.title}</div>
                             <div class="drag-handle card-handle"><i class="fas fa-bars"></i></div>
                         </div>
+
                         <div id="view-${item.id}">
-                            <div class="card-body" onclick="copyText('${item.text.replace(/'/g, "\\'").replace(/\n/g, "\\n")}')">${item.text}</div>
+                            <div class="card-body" onclick="copyText('${item.text.replace(/'/g, "\\'")}')">${item.text}</div>
                             <div class="tap-hint">Tap teks di atas untuk menyalin</div>
+                            
                             <div class="btn-group" id="act-${item.id}" style="margin-top:8px;">
                                 <button class="btn btn-danger" onclick="deleteItem(${catIndex}, ${itemIndex}, event)"><i class="fas fa-trash-alt"></i> Hapus</button>
                                 <button class="btn" onclick="toggleEditItem('${item.id}', event)"><i class="fas fa-pen"></i> Edit</button>
                             </div>
                         </div>
+
                         <div id="edit-${item.id}" class="edit-area hidden">
                             <div id="alert-${item.id}" class="risk-alert hidden"></div>
                             <input type="text" id="inp-title-${item.id}" class="form-input" value="${item.title}" placeholder="Judul Pesan">
@@ -350,7 +756,10 @@
                     `;
                     listContainer.appendChild(card);
                 });
+
                 container.appendChild(catDiv);
+                
+                // Inisialisasi Sortable untuk mobile dan desktop
                 if (listContainer.children.length > 0) {
                     new Sortable(listContainer, { 
                         group: 'shared', 
@@ -362,7 +771,8 @@
                     });
                 }
             });
-            // Inisialisasi Sortable kategori
+
+            // Inisialisasi Sortable untuk kategori
             if (container.children.length > 0) {
                 new Sortable(container, { 
                     animation: 150, 
@@ -377,9 +787,31 @@
                 });
             }
         }
+
+        // --- 6. INTERACTION LOGIC ---
+
+        function toggleTheme(e) {
+            const theme = e.checked ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        }
+
+        function togglePanel(panelId, parentId, e) {
+            // Cek apakah yang diklik adalah input field (saat mode edit)
+            if (e && e.target.tagName === 'INPUT') return; 
+
+            const panel = document.getElementById(panelId);
+            const parentDiv = document.getElementById(parentId);
+            
+            // Hanya toggle panel yang diklik, tanpa mempengaruhi panel lain
+            panel.classList.toggle('open');
+            parentDiv.classList.toggle('active-parent');
+        }
+
         function checkContent(text) {
             return BANNED_KEYWORDS.filter(word => text.toLowerCase().includes(word));
         }
+
         function handleInputCheck(itemId) {
             const text = document.getElementById(`inp-text-${itemId}`).value;
             const alertBox = document.getElementById(`alert-${itemId}`);
@@ -391,89 +823,101 @@
                 alertBox.classList.add('hidden');
             }
         }
+
         // --- CRUD ACTIONS ---
+        
+        // Logika Edit Kategori Menu (Langsung)
         function editCatMode(id, index, e) {
             e.stopPropagation();
+            
             const contentDiv = document.getElementById(`txt-cat-${id}`).parentNode;
             const spanTitle = document.getElementById(`txt-cat-${id}`);
+            
+            // 1. Buat input field baru
             const inputField = document.createElement('input');
             inputField.type = 'text';
             inputField.id = `inp-cat-${id}`;
             inputField.value = spanTitle.innerText;
-            inputField.onclick = (e) => e.stopPropagation();
+            inputField.onclick = (e) => e.stopPropagation(); // Cegah toggle panel saat klik input
+            
+            // 2. Ganti span dengan input
             contentDiv.replaceChild(inputField, spanTitle);
+
+            // 3. Ganti tombol aksi
             document.getElementById(`btn-edit-cat-${id}`).classList.add('hidden');
             document.getElementById(`btn-save-cat-${id}`).classList.remove('hidden');
             inputField.focus();
         }
+
+        // Logika Simpan Kategori Menu (Langsung)
         function saveCat(id, index, e) {
             e.stopPropagation();
             const inputField = document.getElementById(`inp-cat-${id}`);
+            
             if (inputField) {
                 appData[index].title = inputField.value;
                 saveData(); 
+                // Render ulang untuk mengembalikan ke tampilan span yang baru
                 render(); 
             }
         }
+
         function deleteCat(index, e) {
             e.stopPropagation();
-            if(confirm("Hapus kategori folder ini?")) { 
-                appData.splice(index, 1); 
-                saveData(); 
-                render(); 
-            }
+            if(confirm("Hapus kategori folder ini?")) { appData.splice(index, 1); saveData(); render(); }
         }
+
         function toggleEditItem(itemId, e) {
             if(e) e.stopPropagation();
             const view = document.getElementById(`view-${itemId}`);
             const edit = document.getElementById(`edit-${itemId}`);
+            
             if(edit.classList.contains('hidden')){
-                view.classList.add('hidden'); 
-                edit.classList.remove('hidden');
+                view.classList.add('hidden'); edit.classList.remove('hidden');
                 handleInputCheck(itemId);
             } else {
-                view.classList.remove('hidden'); 
-                edit.classList.add('hidden');
+                view.classList.remove('hidden'); edit.classList.add('hidden');
             }
         }
+
         function saveItem(itemId, catIndex, itemIndex) {
             const text = document.getElementById(`inp-text-${itemId}`).value;
             const violations = checkContent(text);
             if (violations.length > 0 && !confirm(`⚠️ Ada kata terlarang (${violations.join(', ')}). Yakin simpan?`)) return;
+            
             appData[catIndex].items[itemIndex].title = document.getElementById(`inp-title-${itemId}`).value;
             appData[catIndex].items[itemIndex].text = text;
             saveData(); 
+            
             // Dapatkan ID kategori sebelum render
             const catId = appData[catIndex].id;
+            
             render();
-            // Re-open panel sesuai kolom
+            // Re-open panel
             setTimeout(() => {
-                const catDiv = document.getElementById(`cat-item-${catId}`);
                 const panel = document.getElementById(`panel-${catId}`);
-                if (panel && catDiv) {
-                    const col = catDiv.dataset.column;
+                if (panel) {
                     panel.classList.add('open');
-                    catDiv.classList.add('active-parent');
-                    openPanels[col] = panel;
+                    document.getElementById(`cat-item-${catId}`).classList.add('active-parent');
                 }
             }, 50);
         }
+
         function deleteItem(catIndex, itemIndex, e) {
             if(e) e.stopPropagation();
+
             if(confirm("Hapus pesan ini?")) {
                 const catId = appData[catIndex].id;
                 appData[catIndex].items.splice(itemIndex, 1);
                 saveData(); 
-                if (appData[catIndex] && appData[catIndex].items.length > 0) {
-                    render();
+                
+                if (appData[catIndex].items.length > 0) {
+                     render();
                     setTimeout(() => {
-                        const catDiv = document.getElementById(`cat-item-${catId}`);
                         const panel = document.getElementById(`panel-${catId}`);
-                        if (panel && catDiv) {
-                            const col = catDiv.dataset.column;
+                        if (panel) {
                             panel.classList.add('open');
-                            catDiv.classList.add('active-parent');
-                            openPanels[col] = panel;
+                            document.getElementById(`cat-item-${catId}`).classList.add('active-parent');
                         }
                     }, 50);
                 } else {
@@ -481,29 +925,24 @@
                 }
             }
         }
+
         function addNewItem(catIndex) {
             appData[catIndex].items.push({ id: Date.now(), title: 'Judul Pesan Baru', text: 'Tulis balasan di sini...' });
-            saveData(); 
-            render();
+            saveData(); render();
             setTimeout(() => {
                 const catId = appData[catIndex].id;
-                const catDiv = document.getElementById(`cat-item-${catId}`);
-                const panel = document.getElementById(`panel-${catId}`);
-                if (panel && catDiv) {
-                    const col = catDiv.dataset.column;
-                    panel.classList.add('open');
-                    catDiv.classList.add('active-parent');
-                    openPanels[col] = panel;
-                }
+                document.getElementById(`panel-${catId}`).classList.add('open');
+                document.getElementById(`cat-item-${catId}`).classList.add('active-parent');
             }, 50);
         }
+
         function addNewCategory() {
             const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
             appData.push({ id: Date.now(), title: 'Folder Baru', icon: 'fa-folder', color: randomColor, items: [] });
-            saveData(); 
-            render();
+            saveData(); render();
             window.scrollTo(0, document.body.scrollHeight);
         }
+
         function rebuildData() {
             const newAppData = [];
             document.querySelectorAll('.category-item').forEach(catEl => {
@@ -523,22 +962,47 @@
             appData = newAppData;
             saveData();
         }
-        function toggleTheme(e) {
-            const theme = e.checked ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', theme);
-            localStorage.setItem('theme', theme);
-        }
-        // Copy text to clipboard with toast
+
         function copyText(txt) {
-            navigator.clipboard.writeText(txt.replace(/\\n/g,"\n"));
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => { toast.classList.remove('show'); }, 1500);
+            // Fallback untuk perangkat mobile
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(txt).then(() => {
+                    showToast();
+                }).catch(err => {
+                    fallbackCopyText(txt);
+                });
+            } else {
+                fallbackCopyText(txt);
+            }
         }
-        // Agar panel tetap benar setelah user resize (mobile <-> desktop)
-        window.addEventListener('resize', () => render());
-        // Init pada load
-        window.onload = init;
+
+        function fallbackCopyText(txt) {
+            const textArea = document.createElement("textarea");
+            textArea.value = txt;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function showToast() {
+            const t = document.getElementById('toast');
+            t.className = "show";
+            setTimeout(()=> t.className = t.className.replace("show", ""), 2000);
+        }
+
+        // Init App
+        document.addEventListener('DOMContentLoaded', init);
+
     </script>
 </body>
 </html>
