@@ -22,12 +22,21 @@
 
 ## 📁 Project Structure
 tiktoktool.github.io/
+
 ├── index.html # Main app
+
 ├── style.css # All styles
+
 ├── script.js # Main logic
+
 ├── service-worker.js # PWA offline
+
 ├── manifest.json # PWA config
+
 ├── sitemap.xml # SEO
+
 ├── robots.txt # SEO
+
 ├── 404.html # Error page
+
 └── README.md # This file
