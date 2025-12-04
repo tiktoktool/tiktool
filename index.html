@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
@@ -964,15 +964,15 @@
             <div class="language-selector">
                 <button class="lang-btn" onclick="toggleLanguageDropdown()">
                     <i class="fas fa-globe"></i>
-                    <span id="current-lang">EN</span>
+                    <span id="current-lang">ID</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
                 <div class="lang-dropdown" id="lang-dropdown">
-                    <div class="lang-option active" data-lang="en" onclick="changeLanguage('en')">
-                        <span>🇺🇸 English</span>
-                    </div>
-                    <div class="lang-option" data-lang="id" onclick="changeLanguage('id')">
+                    <div class="lang-option active" data-lang="id" onclick="changeLanguage('id')">
                         <span>🇮🇩 Indonesia</span>
+                    </div>
+                    <div class="lang-option" data-lang="en" onclick="changeLanguage('en')">
+                        <span>🇺🇸 English</span>
                     </div>
                 </div>
             </div>
@@ -981,7 +981,7 @@
                 <i class="fas fa-rotate-left"></i> <span id="reset-btn">Reset</span>
             </button>
             <button class="btn-top btn-clear" onclick="deleteAll()">
-                <i class="fas fa-trash-alt"></i> <span id="delete-btn">Delete All</span>
+                <i class="fas fa-trash-alt"></i> <span id="delete-btn">Hapus Semua</span>
             </button>
         </div>
     </div>
@@ -991,7 +991,7 @@
     </div>
 
     <div class="info-bar">
-        <i class="fas fa-shield-alt"></i> <b id="info-title">IMPORTANT INFO:</b> <span id="info-text">Avoid sensitive words in chat replies. Supports all languages input!</span>
+        <i class="fas fa-shield-alt"></i> <b id="info-title">INFO PENTING:</b> <span id="info-text">Hindari kata sensitif di balasan chat. Mendukung input semua bahasa!</span>
     </div>
 
     <div id="app-container"></div>
@@ -1001,16 +1001,16 @@
         <div class="storage-info-content">
             <i class="fas fa-database" style="color: var(--primary);"></i>
             <div class="storage-info-text">
-                <strong id="storage-title">LOCAL STORAGE:</strong> 
-                <span id="storage-text">All data saved automatically in browser cache (LocalStorage) - NO EXPIRATION! Data remains available even after closing browser. Supports ANY language input!</span>
+                <strong id="storage-title">PENYIMPANAN LOKAL:</strong> 
+                <span id="storage-text">Semua data disimpan otomatis di cache browser (LocalStorage) - TANPA KADALUARSA! Data tetap tersedia meski browser ditutup. Mendukung input SEMUA bahasa!</span>
             </div>
         </div>
         <div class="storage-actions">
             <button class="btn-check-storage" onclick="checkStorageUsage()">
-                <i class="fas fa-chart-pie"></i> <span id="check-storage-btn">Check Storage</span>
+                <i class="fas fa-chart-pie"></i> <span id="check-storage-btn">Cek Storage</span>
             </button>
             <button class="btn-clear-storage" onclick="clearAllStorage()">
-                <i class="fas fa-broom"></i> <span id="clear-storage-btn">Clear All</span>
+                <i class="fas fa-broom"></i> <span id="clear-storage-btn">Bersihkan Semua</span>
             </button>
         </div>
     </div>
@@ -1033,92 +1033,232 @@
     <div class="modal-overlay" id="createFolderModal">
         <div class="modal">
             <div class="modal-header">
-                <div class="modal-title" id="modal-title">Create New Folder</div>
+                <div class="modal-title" id="modal-title">Buat Folder Baru</div>
                 <button class="modal-close" onclick="hideCreateFolderModal()">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label class="form-label" id="folder-name-label">Folder Name:</label>
-                    <input type="text" class="form-input" id="newFolderName" placeholder="New Folder Name" value="New Folder Name">
-                    <div class="form-hint" id="folder-name-hint">Enter a descriptive name for your new folder (e.g., "Welcome Messages", "Shipping Info", etc.)</div>
+                    <label class="form-label" id="folder-name-label">Nama Folder:</label>
+                    <input type="text" class="form-input" id="newFolderName" placeholder="Nama Folder Baru" value="Nama Folder Baru">
+                    <div class="form-hint" id="folder-name-hint">Masukkan nama deskriptif untuk folder baru Anda (contoh: "Pesan Selamat Datang", "Info Pengiriman", dll.)</div>
                 </div>
                 
                 <div class="example-item">
-                    <div class="example-title" id="example-title">📁 Example Folder Created:</div>
+                    <div class="example-title" id="example-title">📁 Contoh Folder yang Dibuat:</div>
                     <div class="example-text" id="example-text">
-                        After creating, this folder will contain:<br>
-                        1. An example message showing how to use<br>
-                        2. You can add more messages by clicking "Add Message"<br>
-                        3. Tap any message text to copy it to clipboard<br>
-                        4. Edit or delete messages using the buttons
+                        Setelah dibuat, folder ini akan berisi:<br>
+                        1. Contoh pesan yang menunjukkan cara penggunaan<br>
+                        2. Anda bisa tambah pesan dengan klik "Tambah Pesan"<br>
+                        3. Tap teks pesan apa saja untuk menyalin ke clipboard<br>
+                        4. Edit atau hapus pesan menggunakan tombol
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn" onclick="hideCreateFolderModal()">
-                    <i class="fas fa-times"></i> <span id="cancel-btn-modal">Cancel</span>
+                    <i class="fas fa-times"></i> <span id="cancel-btn-modal">Batal</span>
                 </button>
                 <button class="btn btn-primary" onclick="createNewFolderFromModal()">
-                    <i class="fas fa-check"></i> <span id="create-btn">Create Folder</span>
+                    <i class="fas fa-check"></i> <span id="create-btn">Buat Folder</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <div id="toast"><i class="fas fa-check-circle"></i> <span id="toast-text">✅ Text copied successfully!</span></div>
+    <div id="toast"><i class="fas fa-check-circle"></i> <span id="toast-text">✅ Teks berhasil disalin!</span></div>
 
     <script>
-        // --- 1. DATA MASTER ---
-        const defaultData = [
-            { id: 'cat_0', title: 'Check Stock (Ready/Out)', icon: 'fa-cubes', color: '#3b82f6', 
-                items: [
-                    { id: 'm01', title: 'Product Ready Stock', text: 'Hi! This product is READY STOCK and ready to ship. As long as the variant can still be clicked, the item is available. Please checkout immediately before it runs out! 🔥' },
-                    { id: 'm02', title: 'Out of Stock/Empty', text: 'Sorry, for that variant is currently out of stock (Sold Out). 🙏 We will restock as soon as possible. Please follow our store for the latest updates. Thank you!' },
-                    { id: 'm03', title: 'Stock Running Low', text: 'Hi, stock is running low. First come first served. Secure your order now! 😊' }
-                ]},
-            { id: 'cat_1', title: 'Complaints & Bad Reviews', icon: 'fa-triangle-exclamation', color: '#ef4444', 
-                items: [
-                    { id: 'm11', title: 'Apology & Solution (Polite)', text: 'We apologize for the inconvenience. Your satisfaction is our priority. Could you please provide details about the issue via this chat so we can help provide the best solution? Thank you.' },
-                    { id: 'm12', title: 'Response to 1 Star Without Reason', text: 'Hello, we apologize if our product did not meet expectations. We always strive to provide the best. If there is a product defect, please chat us for the warranty/return claim process. 🙏' }
-                ]},
-            { id: 'cat_2', title: '5 Star Review Replies', icon: 'fa-star', color: '#f59e0b', 
-                items: [
-                    { id: 'm21', title: 'Standard Thank You', text: 'Thank you so much for the 5 star review! 😍 We are very happy that you like our product. May it last long and we look forward to your next order!' },
-                    { id: 'm22', title: 'Blessing Prayer (Friendly)', text: 'Alhamdulillah, thank you for shopping at our store. May your prosperity continue to flow. We await your next order! ❤️' }
-                ]},
-            { id: 'cat_3', title: 'Shipping & Logistics', icon: 'fa-truck-fast', color: '#10b981', 
-                items: [
-                    { id: 'm31', title: 'When Will It Be Shipped?', text: 'Orders placed before 3:00 PM will be shipped today. Tracking number updates automatically in the evening. Please wait for status updates in the app. Thank you! 🚚' },
-                    { id: 'm32', title: 'Package Not Moving (Stuck)', text: 'Hello, the physical package has been handed over to the expedition party. Currently the status in the system may be delayed update from the courier side. Please wait 1x24 hours ahead. 🙏' },
-                    { id: 'm33', title: 'Package Lost/Late Arrival', text: 'We apologize for the delay. We have helped follow up with the expedition regarding your package. If there is no movement within 2 days, please submit a refund request (lost package) via the system.' }
-                ]},
-            { id: 'cat_4', title: 'Wrong/Damaged Package', icon: 'fa-box-open', color: '#6366f1', 
-                items: [
-                    { id: 'm41', title: 'Request Video Evidence', text: 'We apologize for the trouble. 🙏 Could you please attach an unboxing video (opening package) so we can help check with the packing team? We will be fully responsible if there is an error.' },
-                    { id: 'm42', title: 'Defective/Damaged Item', text: 'Oh no, we are very sorry the item arrived damaged. Please do not complete the order yet. Please submit a return/refund request via the application, we will approve immediately.' }
-                ]},
-            { id: 'cat_5', title: 'Return Issues', icon: 'fa-rotate-left', color: '#a855f7', 
-                items: [
-                    { id: 'm51', title: 'How to Submit Return', text: 'Hello, for a safe return process, please click the \'Submit Return\' button in your order details. Follow the instructions in the application to get a free return shipping tracking number.' },
-                    { id: 'm52', title: 'Return Rejected (Wrong Reason)', text: 'Hello, we rejected the return request because the reason chosen was not appropriate. Please resubmit by selecting the reason "Changed Mind" or "Product Not Working" so we can process it.' }
-                ]},
-            { id: 'cat_6', title: 'Swapped Items', icon: 'fa-arrow-right-arrow-left', color: '#ec4899', 
-                items: [
-                    { id: 'm61', title: 'Wrong Variant Sent', text: 'We apologize, it seems our packing team stuck the wrong tracking number/took the wrong item. 🙏 We will send the replacement item. Please submit an item exchange request in the system.' }
-                ]},
-            { id: 'cat_7', title: 'Product Not Working (Trouble)', icon: 'fa-plug', color: '#f97316', 
-                items: [
-                    { id: 'm71', title: 'Usage Guide', text: 'Hello, for this product, have you tried [Fill Brief Instruction, e.g.: charge for 2 hours first]? Sometimes products need initial power. If it still doesn\'t work, we are ready to replace it with a new one.' }
-                ]},
-            { id: 'cat_8', title: 'Frequently Asked Questions (COD/Original)', icon: 'fa-circle-question', color: '#06b6d4', 
-                items: [
-                    { id: 'm81', title: 'Is COD Available?', text: 'Yes, definitely! Our store supports COD (Cash on Delivery) throughout Indonesia. Make sure your address is complete and your mobile number is active when checking out. We await your order! 😊' },
-                    { id: 'm82', title: 'Is the Product Original?', text: 'We guarantee 100% Original. Our items are taken directly from official distributors. There is a money back guarantee if proven not original. Please order with peace of mind. ✨' },
-                    { id: 'm83', title: 'Request Real Photo', text: 'The photos displayed in the showcase are original photos (Real Picture) from our team. What you see is what you will get. 👌' }
-                ]}
-        ];
+        // --- 1. DATA MASTER (DUA BAHASA) ---
+        const defaultData = {
+            id: [
+                { 
+                    id: 'cat_0', 
+                    title: 'Cek Stok (Ready/Habis)', 
+                    icon: 'fa-cubes', 
+                    color: '#3b82f6', 
+                    items: [
+                        { id: 'm01', title: 'Barang Ready Stock', text: 'Hai Kak! Produk ini READY STOCK dan siap kirim ya. Selama varian masih bisa diklik, berarti barang tersedia. Silakan langsung di-checkout sebelum kehabisan! 🔥' },
+                        { id: 'm02', title: 'Stok Habis/Kosong', text: 'Mohon maaf Kak, untuk varian tersebut saat ini sedang habis (Sold Out). 🙏 Kami akan restock secepatnya. Boleh follow toko kami untuk update terbarunya ya. Terima kasih!' },
+                        { id: 'm03', title: 'Stok Menipis', text: 'Hai Kak, stoknya tinggal sedikit lagi nih. Siapa cepat dia dapat ya Kak. Yuk segera diamankan pesananannya sekarang! 😊' }
+                    ]
+                },
+                { 
+                    id: 'cat_1', 
+                    title: 'Komplain & Review Buruk', 
+                    icon: 'fa-triangle-exclamation', 
+                    color: '#ef4444', 
+                    items: [
+                        { id: 'm11', title: 'Minta Maaf & Solusi (Sopan)', text: 'Mohon maaf atas ketidaknyamanannya, Kak. Kepuasan Kakak adalah prioritas kami. Boleh tolong infokan detail kendalanya via chat ini agar kami bisa bantu berikan solusi terbaik? Terima kasih.' },
+                        { id: 'm12', title: 'Respons Bintang 1 Tanpa Alasan', text: 'Halo Kak, mohon maaf jika produk kami tidak memenuhi ekspektasi. Kami selalu berusaha memberikan yang terbaik. Jika ada cacat produk, mohon chat kami untuk proses klaim garansi/retur ya Kak. 🙏' }
+                    ]
+                },
+                { 
+                    id: 'cat_2', 
+                    title: 'Balasan Ulasan Bintang 5', 
+                    icon: 'fa-star', 
+                    color: '#f59e0b', 
+                    items: [
+                        { id: 'm21', title: 'Terima Kasih Standard', text: 'Terima kasih banyak ulasan bintang 5-nya Kak! 😍 Senang sekali Kakak suka dengan produknya. Semoga awet dan ditunggu orderan selanjutnya ya!' },
+                        { id: 'm22', title: 'Doa Rezeki (Ramah)', text: 'Alhamdulillah, terima kasih Kak sudah belanja di toko kami. Semoga rezekinya lancar terus ya Kak. Ditunggu next ordernya! ❤️' }
+                    ]
+                },
+                { 
+                    id: 'cat_3', 
+                    title: 'Pengiriman & Logistik', 
+                    icon: 'fa-truck-fast', 
+                    color: '#10b981', 
+                    items: [
+                        { id: 'm31', title: 'Kapan Dikirim?', text: 'Pesanan yang masuk sebelum jam 15.00 akan dikirim hari ini ya Kak. Resi update otomatis malam hari. Mohon ditunggu update statusnya di aplikasi. Terima kasih! 🚚' },
+                        { id: 'm32', title: 'Paket Belum Jalan (Stuck)', text: 'Halo Kak, fisik paket sudah kami serahkan ke pihak ekspedisi ya. Saat ini status di sistem mungkin delay update dari pihak kurirnya. Mohon kesediaannya menunggu 1x24 jam kedepan ya Kak. 🙏' },
+                        { id: 'm33', title: 'Paket Hilang/Lama Sampai', text: 'Mohon maaf atas keterlambatannya Kak. Kami sudah bantu follow-up ke pihak ekspedisi terkait paket Kakak. Jika dalam 2 hari tidak ada pergerakan, silakan ajukan pengembalian dana (paket hilang) via sistem ya Kak.' }
+                    ]
+                },
+                { 
+                    id: 'cat_4', 
+                    title: 'Paket Tidak Sesuai/Rusak', 
+                    icon: 'fa-box-open', 
+                    color: '#6366f1', 
+                    items: [
+                        { id: 'm41', title: 'Minta Bukti Video', text: 'Mohon maaf atas kendalanya Kak. 🙏 Bisa tolong lampirkan video unboxing (buka paket) agar bisa kami bantu pengecekan dengan tim packing? Kami akan bertanggung jawab penuh jika ada kesalahan.' },
+                        { id: 'm42', title: 'Barang Cacat/Rusak', text: 'Waduh, mohon maaf sekali barang sampai dalam kondisi rusak. Jangan selesaikan pesanan dulu ya Kak. Silakan ajukan pengembalian barang/dana via aplikasi, nanti kami approve segera.' }
+                    ]
+                },
+                { 
+                    id: 'cat_5', 
+                    title: 'Masalah Return (Pengembalian)', 
+                    icon: 'fa-rotate-left', 
+                    color: '#a855f7', 
+                    items: [
+                        { id: 'm51', title: 'Cara Mengajukan Return', text: 'Halo Kak, untuk proses retur yang aman, silakan klik tombol \'Ajukan Pengembalian\' pada rincian pesanan Kakak. Ikuti instruksi di aplikasi untuk mendapatkan resi pengembalian gratis ongkir.' },
+                        { id: 'm52', title: 'Return Ditolak (Salah Alasan)', text: 'Halo Kak, pengajuan returnya kami tolak dulu karena alasan yang dipilih kurang tepat. Silakan ajukan ulang dengan memilih alasan "Barang Berubah Pikiran" atau "Produk Tidak Berfungsi" ya Kak agar bisa kami proses.' }
+                    ]
+                },
+                { 
+                    id: 'cat_6', 
+                    title: 'Barang Tertukar', 
+                    icon: 'fa-arrow-right-arrow-left', 
+                    color: '#ec4899', 
+                    items: [
+                        { id: 'm61', title: 'Salah Kirim Varian', text: 'Mohon maaf Kak, sepertinya tim packing kami salah menempelkan resi/mengambil barang. 🙏 Kami akan kirimkan barang penggantinya. Silakan ajukan penukaran barang di sistem ya Kak.' }
+                    ]
+                },
+                { 
+                    id: 'cat_7', 
+                    title: 'Produk Tidak Berfungsi (Trouble)', 
+                    icon: 'fa-plug', 
+                    color: '#f97316', 
+                    items: [
+                        { id: 'm71', title: 'Panduan Pemakaian', text: 'Halo Kak, untuk produk ini apakah sudah dicoba [Isi Instruksi Singkat, misal: cas dulu 2 jam]? Terkadang produk butuh daya awal. Jika masih tidak menyala, kami siap ganti baru.' }
+                    ]
+                },
+                { 
+                    id: 'cat_8', 
+                    title: 'Pertanyaan Umum (COD/Asli)', 
+                    icon: 'fa-circle-question', 
+                    color: '#06b6d4', 
+                    items: [
+                        { id: 'm81', title: 'Apakah Bisa COD?', text: 'Bisa banget Kak! Toko kami support COD (Bayar di Tempat) ke seluruh Indonesia. Pastikan alamat lengkap dan nomor HP aktif ya saat checkout. Ditunggu! 😊' },
+                        { id: 'm82', title: 'Apakah Produk Original?', text: 'Kami jamin 100% Original Kak. Barang kami ambil langsung dari distributor resmi. Ada garansi uang kembali jika terbukti tidak ori. Silakan diorder dengan tenang. ✨' },
+                        { id: 'm83', title: 'Minta Realpict', text: 'Foto yang dipajang di etalase sudah foto asli (Real Picture) dari tim kami ya Kak. Apa yang Kakak lihat, itu yang akan Kakak dapatkan. 👌' }
+                    ]
+                }
+            ],
+            en: [
+                { 
+                    id: 'cat_0', 
+                    title: 'Check Stock (Ready/Out)', 
+                    icon: 'fa-cubes', 
+                    color: '#3b82f6', 
+                    items: [
+                        { id: 'm01', title: 'Product Ready Stock', text: 'Hi! This product is READY STOCK and ready to ship. As long as the variant can still be clicked, the item is available. Please checkout immediately before it runs out! 🔥' },
+                        { id: 'm02', title: 'Out of Stock/Empty', text: 'Sorry, for that variant is currently out of stock (Sold Out). 🙏 We will restock as soon as possible. Please follow our store for the latest updates. Thank you!' },
+                        { id: 'm03', title: 'Stock Running Low', text: 'Hi, stock is running low. First come first served. Secure your order now! 😊' }
+                    ]
+                },
+                { 
+                    id: 'cat_1', 
+                    title: 'Complaints & Bad Reviews', 
+                    icon: 'fa-triangle-exclamation', 
+                    color: '#ef4444', 
+                    items: [
+                        { id: 'm11', title: 'Apology & Solution (Polite)', text: 'We apologize for the inconvenience. Your satisfaction is our priority. Could you please provide details about the issue via this chat so we can help provide the best solution? Thank you.' },
+                        { id: 'm12', title: 'Response to 1 Star Without Reason', text: 'Hello, we apologize if our product did not meet expectations. We always strive to provide the best. If there is a product defect, please chat us for the warranty/return claim process. 🙏' }
+                    ]
+                },
+                { 
+                    id: 'cat_2', 
+                    title: '5 Star Review Replies', 
+                    icon: 'fa-star', 
+                    color: '#f59e0b', 
+                    items: [
+                        { id: 'm21', title: 'Standard Thank You', text: 'Thank you so much for the 5 star review! 😍 We are very happy that you like our product. May it last long and we look forward to your next order!' },
+                        { id: 'm22', title: 'Blessing Prayer (Friendly)', text: 'Alhamdulillah, thank you for shopping at our store. May your prosperity continue to flow. We await your next order! ❤️' }
+                    ]
+                },
+                { 
+                    id: 'cat_3', 
+                    title: 'Shipping & Logistics', 
+                    icon: 'fa-truck-fast', 
+                    color: '#10b981', 
+                    items: [
+                        { id: 'm31', title: 'When Will It Be Shipped?', text: 'Orders placed before 3:00 PM will be shipped today. Tracking number updates automatically in the evening. Please wait for status updates in the app. Thank you! 🚚' },
+                        { id: 'm32', title: 'Package Not Moving (Stuck)', text: 'Hello, the physical package has been handed over to the expedition party. Currently the status in the system may be delayed update from the courier side. Please wait 1x24 hours ahead. 🙏' },
+                        { id: 'm33', title: 'Package Lost/Late Arrival', text: 'We apologize for the delay. We have helped follow up with the expedition regarding your package. If there is no movement within 2 days, please submit a refund request (lost package) via the system.' }
+                    ]
+                },
+                { 
+                    id: 'cat_4', 
+                    title: 'Wrong/Damaged Package', 
+                    icon: 'fa-box-open', 
+                    color: '#6366f1', 
+                    items: [
+                        { id: 'm41', title: 'Request Video Evidence', text: 'We apologize for the trouble. 🙏 Could you please attach an unboxing video (opening package) so we can help check with the packing team? We will be fully responsible if there is an error.' },
+                        { id: 'm42', title: 'Defective/Damaged Item', text: 'Oh no, we are very sorry the item arrived damaged. Please do not complete the order yet. Please submit a return/refund request via the application, we will approve immediately.' }
+                    ]
+                },
+                { 
+                    id: 'cat_5', 
+                    title: 'Return Issues', 
+                    icon: 'fa-rotate-left', 
+                    color: '#a855f7', 
+                    items: [
+                        { id: 'm51', title: 'How to Submit Return', text: 'Hello, for a safe return process, please click the \'Submit Return\' button in your order details. Follow the instructions in the application to get a free return shipping tracking number.' },
+                        { id: 'm52', title: 'Return Rejected (Wrong Reason)', text: 'Hello, we rejected the return request because the reason chosen was not appropriate. Please resubmit by selecting the reason "Changed Mind" or "Product Not Working" so we can process it.' }
+                    ]
+                },
+                { 
+                    id: 'cat_6', 
+                    title: 'Swapped Items', 
+                    icon: 'fa-arrow-right-arrow-left', 
+                    color: '#ec4899', 
+                    items: [
+                        { id: 'm61', title: 'Wrong Variant Sent', text: 'We apologize, it seems our packing team stuck the wrong tracking number/took the wrong item. 🙏 We will send the replacement item. Please submit an item exchange request in the system.' }
+                    ]
+                },
+                { 
+                    id: 'cat_7', 
+                    title: 'Product Not Working (Trouble)', 
+                    icon: 'fa-plug', 
+                    color: '#f97316', 
+                    items: [
+                        { id: 'm71', title: 'Usage Guide', text: 'Hello, for this product, have you tried [Fill Brief Instruction, e.g.: charge for 2 hours first]? Sometimes products need initial power. If it still doesn\'t work, we are ready to replace it with a new one.' }
+                    ]
+                },
+                { 
+                    id: 'cat_8', 
+                    title: 'Frequently Asked Questions (COD/Original)', 
+                    icon: 'fa-circle-question', 
+                    color: '#06b6d4', 
+                    items: [
+                        { id: 'm81', title: 'Is COD Available?', text: 'Yes, definitely! Our store supports COD (Cash on Delivery) throughout Indonesia. Make sure your address is complete and your mobile number is active when checking out. We await your order! 😊' },
+                        { id: 'm82', title: 'Is the Product Original?', text: 'We guarantee 100% Original. Our items are taken directly from official distributors. There is a money back guarantee if proven not original. Please order with peace of mind. ✨' },
+                        { id: 'm83', title: 'Request Real Photo', text: 'The photos displayed in the showcase are original photos (Real Picture) from our team. What you see is what you will get. 👌' }
+                    ]
+                }
+            ]
+        };
 
         // --- 2. LOGIKA UTAMA ---
         let appData = [];
@@ -1127,67 +1267,6 @@
 
         // --- 3. MULTI BAHASA (i18n) ---
         const translations = {
-            en: {
-                // Header
-                'app-title': 'Seller Tiktok Chat Pro Custom',
-                'reset-btn': 'Reset',
-                'delete-btn': 'Delete All',
-                'info-title': 'IMPORTANT INFO:',
-                'info-text': 'Avoid sensitive words in chat replies. Supports all languages input!',
-                'toast-text': '✅ Text copied successfully!',
-                
-                // Categories
-                'category-default': 'New Folder Name',
-                'add-message': 'Add Message',
-                'message-title': 'Message Title',
-                'message-content': 'Write reply here... (Supports ALL languages!)',
-                'tap-hint': 'Tap text above to copy',
-                
-                // Buttons
-                'delete-item': 'Delete',
-                'edit-btn': 'Edit',
-                'cancel-btn': 'Cancel',
-                'save-btn': 'Save',
-                
-                // Confirmation Messages
-                'confirm-reset': '⚠️ WARNING: All your script data will be deleted and restored to factory settings.\n\nAre you sure?',
-                'confirm-delete-all': '⚠️ CRITICAL WARNING: All menus and scripts will be COMPLETELY DELETED!\n\nYou will have to create them again from scratch.\nAre you sure?',
-                'confirm-delete-category': 'Delete this category folder?',
-                'confirm-delete-message': 'Delete this message?',
-                'confirm-banned-words': '⚠️ There are banned words (${violations}). Are you sure you want to save?',
-                
-                // Success Messages
-                'success-reset': 'Data successfully restored to default.',
-                
-                // Empty State
-                'empty-state': 'No menus saved yet.<br>Click the (+) button below to create a new one.',
-                
-                // Warning
-                'warning-title': 'WARNING',
-                'warning-banned': 'Words "${words}" are banned.',
-                
-                // Language
-                'current-lang': 'EN',
-                
-                // Storage Info
-                'storage-title': 'LOCAL STORAGE:',
-                'storage-text': 'All data saved automatically in browser cache (LocalStorage) - NO EXPIRATION! Data remains available even after closing browser. Supports ANY language input!',
-                'check-storage-btn': 'Check Storage',
-                'clear-storage-btn': 'Clear All',
-                'confirm-clear-storage': '⚠️ WARNING: All data including theme and language will be removed from browser cache.\n\nApp will return to factory settings.\nAre you sure?',
-                'storage-cleared': '✅ All cache data has been cleared.',
-                'storage-info': 'Data stored: ${size} KB (Supports unlimited languages!)',
-                'storage-empty': 'No data stored',
-                
-                // Modal
-                'modal-title': 'Create New Folder',
-                'folder-name-label': 'Folder Name:',
-                'folder-name-hint': 'Enter a descriptive name for your new folder (e.g., "Welcome Messages", "Shipping Info", etc.)',
-                'example-title': '📁 Example Folder Created:',
-                'example-text': 'After creating, this folder will contain:<br>1. An example message showing how to use<br>2. You can add more messages by clicking "Add Message"<br>3. Tap any message text to copy it to clipboard<br>4. Edit or delete messages using the buttons',
-                'cancel-btn-modal': 'Cancel',
-                'create-btn': 'Create Folder'
-            },
             id: {
                 // Header
                 'app-title': 'Seller Tiktok Chat Pro Custom',
@@ -1248,10 +1327,71 @@
                 'example-text': 'Setelah dibuat, folder ini akan berisi:<br>1. Contoh pesan yang menunjukkan cara penggunaan<br>2. Anda bisa tambah pesan dengan klik "Tambah Pesan"<br>3. Tap teks pesan apa saja untuk menyalin ke clipboard<br>4. Edit atau hapus pesan menggunakan tombol',
                 'cancel-btn-modal': 'Batal',
                 'create-btn': 'Buat Folder'
+            },
+            en: {
+                // Header
+                'app-title': 'Seller Tiktok Chat Pro Custom',
+                'reset-btn': 'Reset',
+                'delete-btn': 'Delete All',
+                'info-title': 'IMPORTANT INFO:',
+                'info-text': 'Avoid sensitive words in chat replies. Supports all languages input!',
+                'toast-text': '✅ Text copied successfully!',
+                
+                // Categories
+                'category-default': 'New Folder Name',
+                'add-message': 'Add Message',
+                'message-title': 'Message Title',
+                'message-content': 'Write reply here... (Supports ALL languages!)',
+                'tap-hint': 'Tap text above to copy',
+                
+                // Buttons
+                'delete-item': 'Delete',
+                'edit-btn': 'Edit',
+                'cancel-btn': 'Cancel',
+                'save-btn': 'Save',
+                
+                // Confirmation Messages
+                'confirm-reset': '⚠️ WARNING: All your script data will be deleted and restored to factory settings.\n\nAre you sure?',
+                'confirm-delete-all': '⚠️ CRITICAL WARNING: All menus and scripts will be COMPLETELY DELETED!\n\nYou will have to create them again from scratch.\nAre you sure?',
+                'confirm-delete-category': 'Delete this category folder?',
+                'confirm-delete-message': 'Delete this message?',
+                'confirm-banned-words': '⚠️ There are banned words (${violations}). Are you sure you want to save?',
+                
+                // Success Messages
+                'success-reset': 'Data successfully restored to default.',
+                
+                // Empty State
+                'empty-state': 'No menus saved yet.<br>Click the (+) button below to create a new one.',
+                
+                // Warning
+                'warning-title': 'WARNING',
+                'warning-banned': 'Words "${words}" are banned.',
+                
+                // Language
+                'current-lang': 'EN',
+                
+                // Storage Info
+                'storage-title': 'LOCAL STORAGE:',
+                'storage-text': 'All data saved automatically in browser cache (LocalStorage) - NO EXPIRATION! Data remains available even after closing browser. Supports ANY language input!',
+                'check-storage-btn': 'Check Storage',
+                'clear-storage-btn': 'Clear All',
+                'confirm-clear-storage': '⚠️ WARNING: All data including theme and language will be removed from browser cache.\n\nApp will return to factory settings.\nAre you sure?',
+                'storage-cleared': '✅ All cache data has been cleared.',
+                'storage-info': 'Data stored: ${size} KB (Supports unlimited languages!)',
+                'storage-empty': 'No data stored',
+                
+                // Modal
+                'modal-title': 'Create New Folder',
+                'folder-name-label': 'Folder Name:',
+                'folder-name-hint': 'Enter a descriptive name for your new folder (e.g., "Welcome Messages", "Shipping Info", etc.)',
+                'example-title': '📁 Example Folder Created:',
+                'example-text': 'After creating, this folder will contain:<br>1. An example message showing how to use<br>2. You can add more messages by clicking "Add Message"<br>3. Tap any message text to copy it to clipboard<br>4. Edit or delete messages using the buttons',
+                'cancel-btn-modal': 'Cancel',
+                'create-btn': 'Create Folder'
             }
         };
 
-        let currentLanguage = 'en';
+        let currentLanguage = 'id'; // DEFAULT BAHASA INDONESIA
         const LANGUAGE_KEY = 'SellerTiktokChatPro_Language';
 
         // Fungsi untuk mengubah bahasa
@@ -1333,7 +1473,7 @@
                 // Update placeholder
                 const input = document.getElementById('newFolderName');
                 input.placeholder = t['category-default'];
-                if (input.value === 'New Folder Name' || input.value === 'Nama Folder Baru') {
+                if (input.value === 'Nama Folder Baru' || input.value === 'New Folder Name') {
                     input.value = t['category-default'];
                 }
             }
@@ -1341,7 +1481,7 @@
 
         // Fungsi untuk mendapatkan terjemahan
         function t(key, variables = {}) {
-            let text = translations[currentLanguage][key] || translations['en'][key] || key;
+            let text = translations[currentLanguage][key] || translations['id'][key] || key;
             
             // Replace variables
             Object.keys(variables).forEach(variable => {
@@ -1380,13 +1520,13 @@
                 if(savedTheme === 'dark') document.getElementById('checkbox').checked = true;
             }
 
-            // Load Language - Default to English
+            // Load Language - Default to Indonesian
             const savedLanguage = localStorage.getItem(LANGUAGE_KEY);
             if (savedLanguage) {
                 currentLanguage = savedLanguage;
             } else {
-                currentLanguage = 'en';
-                localStorage.setItem(LANGUAGE_KEY, 'en');
+                currentLanguage = 'id'; // DEFAULT ID
+                localStorage.setItem(LANGUAGE_KEY, 'id');
             }
 
             // Load Data
@@ -1394,7 +1534,8 @@
             if (savedData) {
                 appData = JSON.parse(savedData);
             } else {
-                appData = JSON.parse(JSON.stringify(defaultData));
+                // Use default data based on current language
+                appData = JSON.parse(JSON.stringify(defaultData[currentLanguage]));
             }
             
             // Apply language
@@ -1415,7 +1556,8 @@
         function resetToDefault() {
             const confirmReset = confirm(t('confirm-reset'));
             if (confirmReset) {
-                appData = JSON.parse(JSON.stringify(defaultData));
+                // Reset to default data for current language
+                appData = JSON.parse(JSON.stringify(defaultData[currentLanguage]));
                 saveData();
                 render();
                 showToast('🔄 ' + t('success-reset'), 3000);
@@ -1459,9 +1601,9 @@
                 localStorage.removeItem(LANGUAGE_KEY);
                 localStorage.removeItem('theme');
                 
-                // Reset aplikasi
-                appData = JSON.parse(JSON.stringify(defaultData));
-                currentLanguage = 'en';
+                // Reset aplikasi dengan bahasa default (id)
+                currentLanguage = 'id';
+                appData = JSON.parse(JSON.stringify(defaultData[currentLanguage]));
                 
                 // Terapkan ulang
                 applyLanguage();
