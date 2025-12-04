@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     
     <!-- ===================== SEO META TAGS ===================== -->
-    <title>Seller Chat Assistant Pro | MultiLanguage Chat Templates for eBay, Amazon, TikTok, Shopee</title>
+    <title>Seller Chat Assistant Pro | MultiLanguage Chat Templates for eBay, Amazon, TikTok</title>
     <meta name="description" content="FREE MultiLanguage Chat Assistant for Online Sellers. 12 Languages Support. Ready templates for eBay, Amazon, TikTok Shop, Shopee, Lazada, AliExpress, Mercari, Etsy. Boost customer service efficiency.">
     <meta name="keywords" content="seller chat templates, customer service chatbot, multilanguage chat assistant, eBay seller tools, Amazon seller tools, TikTok Shop chat, Shopee seller, Lazada seller, AliExpress chat templates, online business tools, e-commerce assistant, free seller tools, customer support templates">
     <meta name="author" content="Seller Chat Assistant Pro">
@@ -36,16 +36,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     
-    <!-- ===================== PRELOAD CRITICAL RESOURCES ===================== -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
-    
     <!-- ===================== FAVICON & PWA ICONS ===================== -->
-    <!-- SVG Favicon (Generated from Font Awesome icon) -->
+    <!-- SVG Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💬</text></svg>">
-    <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23FE2C55'/><text x='16' y='22' font-family='Arial' font-size='18' text-anchor='middle' fill='white'>💬</text></svg>">
-    <link rel="icon" type="image/png" sizes="192x192" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%23FE2C55'/><text x='96' y='140' font-family='Arial' font-size='100' text-anchor='middle' fill='white'>💬</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%23FE2C55'/><text x='96' y='140' font-family='Arial' font-size='100' text-anchor='middle' fill='white'>💬</text></svg>">
     
     <!-- Web App Manifest -->
     <link rel="manifest" href="manifest.json">
@@ -197,25 +190,33 @@
         </div>
     </div>
 
-    <!-- ===================== FLAG COUNTER SECTION ===================== -->
-    <div class="flag-counter-container">
-        <div class="flag-counter-inner">
-            <i class="fas fa-flag"></i>
-            <div class="counter-info">
-                <h3>Global Usage Statistics</h3>
-                <p>This tool is used by sellers worldwide!</p>
-                <div class="counter-stats">
-                    <div class="stat">
-                        <i class="fas fa-users"></i>
-                        <span>Active Users: <strong>1,250+</strong></span>
-                    </div>
-                    <div class="stat">
+    <!-- ===================== VISITOR STATS ===================== -->
+    <div class="visitor-stats">
+        <div class="stats-inner">
+            <i class="fas fa-chart-line"></i>
+            <div class="stats-info">
+                <h3><i class="fas fa-language"></i> MultiLanguage Support</h3>
+                <div class="stats-grid">
+                    <div class="stat-box">
                         <i class="fas fa-globe-americas"></i>
-                        <span>Countries: <strong>50+</strong></span>
+                        <div>
+                            <strong>12</strong>
+                            <span>Languages</span>
+                        </div>
                     </div>
-                    <div class="stat">
-                        <i class="fas fa-comments"></i>
-                        <span>Templates Created: <strong>10,000+</strong></span>
+                    <div class="stat-box">
+                        <i class="fas fa-store"></i>
+                        <div>
+                            <strong>8+</strong>
+                            <span>Platforms</span>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <i class="fas fa-bolt"></i>
+                        <div>
+                            <strong>100%</strong>
+                            <span>Offline</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -320,24 +321,22 @@
 
     <!-- ===================== TOAST ===================== -->
     <div id="toast" role="alert" aria-live="polite">
-        <i class="fas fa-check-circle"></i> <span id="toast-text">✅ Text copied successfully!</span>
-    </div>
+        <i class="fas fa-check-circle"></i> <span id="toast-text">✅ Text copied successfully!</span></div>
 
     <!-- Hidden input for file import -->
     <input type="file" id="fileImportInput" accept=".json" style="display: none;">
 
     <!-- ===================== SCRIPTS ===================== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 
     <!-- ===================== PWA SERVICE WORKER ===================== -->
     <script>
-        // Register Service Worker for PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
+                navigator.serviceWorker.register('service-worker.js')
                     .then(registration => {
-                        console.log('ServiceWorker registered:', registration);
+                        console.log('ServiceWorker registered');
                     })
                     .catch(error => {
                         console.log('ServiceWorker registration failed:', error);
@@ -349,13 +348,13 @@
     <!-- ===================== FOOTER ===================== -->
     <footer class="seo-footer">
         <div class="footer-content">
-            <p>© 2024 Seller Chat Assistant Pro | <i class="fas fa-language"></i> MultiLanguage | <i class="fas fa-download"></i> Import/Export | 
-                <a href="https://github.com/tiktoktool" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a> | 
-                <a href="https://tiktoktool.github.io/">Website</a>
+            <p>© 2024 Seller Chat Assistant Pro | <i class="fas fa-language"></i> MultiLanguage | 
+                <a href="https://github.com/tiktoktool" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a> | 
+                <a href="https://tiktoktool.github.io/">tiktoktool.github.io</a>
             </p>
             <p class="footer-seo">
-                <strong>Features:</strong> Import chat templates, Export backup data, Download sample templates, JSON format support, 
-                Data migration tool, Backup & restore, MultiLanguage templates, eBay Amazon TikTok Shop templates
+                <strong>Keywords:</strong> MultiLanguage chat templates, eBay seller tools, Amazon FBA templates, 
+                TikTok Shop chat, Shopee seller assistant, free seller tools, import export templates
             </p>
         </div>
     </footer>
